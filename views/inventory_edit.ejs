@@ -41,9 +41,8 @@
 
           <label for="warehouse">Select a Warehouse:</label>
           <select name="warehouse" id="warehouse">
-            <% if (!location) { %>
-              <option value="<%= location %>"><%= location %></option>
-            <% } %> 
+
+              <option value=""></option>
             <% for(let warehouse of warehouses) { %>          
               <option value="<%= warehouse %>"><%= warehouse %></option>                
             <% } %>
