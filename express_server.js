@@ -58,18 +58,18 @@ const inventory = {
 // CRUD actions start below
 //------------------------------------------------
 
-// Render inventory main page
+// GET inventory main page
 app.get("/", (req, res) => {
   const templateVars = {inventory}
   res.render("inventory_index", templateVars);
 });
 
-// Render "create an inventory item" page
+// GET "create an inventory item" page
 app.get("/new", (req, res) => {
     res.render("inventory_new");
 });
 
-// Render "Edit an inventory item" page
+// GET "Edit an inventory item" page
 app.get("/inventory/:id", (req, res) => {
   const id = req.params.id;
   const templateVars = inventory[id];
@@ -98,7 +98,6 @@ app.post("/new", (req, res) => {
     location: req.body.location,
     price: req.body.price
    };
-  console.log(inventory[id])
   res.redirect("/");
 });
 
@@ -106,13 +105,10 @@ app.post("/new", (req, res) => {
 app.post("/inventory/:id/delete", (req, res) => {
   const id = req.params.id;
   delete inventory[id];
-  res.redirect(`/urls`);
+  res.redirect(`/`);
 });
 
-// app.get("/urls.json", (req, res) => {
-//   res.json(urlDatabase);
-// });
-
+// Active port
 app.listen(PORT, () => {
   console.log(`Example app listening on port ${PORT}!`);
 });
