@@ -1,4 +1,4 @@
-# Shopify Backend Dev Challenge Summer 2022 - Awab Osman
+# Shopify Backend Dev Challenge Fall 2022 - Awab Osman
 
 This is a inventory tracking web application, which allows users to manage inventory using basic CRUD functionality. The additional feature added to this project allows users to create warehouses and assign inventory to specific locations. Users can assign inventory to specific locations by editing existing products or creating new products.
 
