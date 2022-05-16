@@ -34,17 +34,20 @@
 
           <div class="input-group mb-3">
             <div class="input-group-prepend">
-              <span class="input-group-text" id="inputGroup-sizing-default">Location</span>
-            </div>
-            <input name="location" value="<%= location %>" type="text" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default">
-          </div>
-
-          <div class="input-group mb-3">
-            <div class="input-group-prepend">
               <span class="input-group-text" id="inputGroup-sizing-default">Price</span>
             </div>
             <input name="price" value="<%= price %>" type="text" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default">
           </div>
+
+          <label for="warehouse">Select a Warehouse:</label>
+          <select name="warehouse" id="warehouse">
+            <% if (!location) { %>
+              <option value="<%= location %>"><%= location %></option>
+            <% } %> 
+            <% for(let warehouse of warehouses) { %>          
+              <option value="<%= warehouse %>"><%= warehouse %></option>                
+            <% } %>
+          </select>
           
           <button type="submit" class="btn btn-primary">Submit</button>
 

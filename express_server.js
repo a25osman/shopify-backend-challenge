@@ -11,38 +11,41 @@ app.set("view engine", "ejs");
 
 
 // initial database
+
+const warehouses = ["Toronto Storage", "Montreal Factory", "New York Closet", "Secret Hideout"];
+
 const inventory = {
   0: {
     id: 0,
     code: generateRandomString(),
-    product: "Cargo Van",
-    qty: 8,
-    location: null,
+    product: "Cardboard Box",
+    qty: 80,
+    location: warehouses[0],
     price: 4000
   },
   1: {
     id: 1,
     code: generateRandomString(),
-    product: "Small Truck",
+    product: "Toy Truck",
     qty: 12,
-    location: null,
+    location: warehouses[2],
     price: 6000
   },
   2: {
     id: 2,
     code: generateRandomString(),
-    product: "Large Truck",
-    qty: 5,
-    location: null,
-    price: 9000
+    product: "Cutlery",
+    qty: 500,
+    location: warehouses[0],
+    price: 550
   },
   3: {
     id: 3,
     code: generateRandomString(),
-    product: "Fork Lift",
-    qty: 6,
-    location: null,
-    price: 15000
+    product: "Basketballs",
+    qty: 23,
+    location: warehouses[3],
+    price: 399
   },
   4: {
     id: 4,
@@ -53,9 +56,6 @@ const inventory = {
     price: 1500
   }
 };
-
-const warehouses = ["Toronto Storage", "Montreal Factory", "New York Closet"];
-
 
 // CRUD actions start below
 //------------------------------------------------
@@ -68,18 +68,19 @@ app.get("/", (req, res) => {
 
 // GET "create an inventory item" page
 app.get("/new", (req, res) => {
-    res.render("inventory_new");
+    const templateVars = {warehouses}
+    res.render("inventory_new", templateVars);
 });
 
 // GET "create a warehouse" page
 app.get("/locations/new", (req, res) => {
-    res.render("locations_new");
+  res.render("locations_new");
 });
 
 // GET "Edit an inventory item" page
 app.get("/inventory/:id", (req, res) => {
   const id = req.params.id;
-  const templateVars = inventory[id];
+  const templateVars = {...inventory[id], warehouses};
   res.render("inventory_edit", templateVars);
 });
 
@@ -88,7 +89,7 @@ app.post("/inventory/:id", (req, res) => {
   const id = req.params.id;
   inventory[id].product = req.body.product;
   inventory[id].qty = req.body.qty;
-  inventory[id].location = req.body.location;
+  inventory[id].location = req.body.warehouse;
   inventory[id].price = req.body.price;
   res.redirect("/");
 });
@@ -101,7 +102,7 @@ app.post("/new", (req, res) => {
     code: generateRandomString(),
     product: req.body.product,
     qty: req.body.qty,
-    location: req.body.location,
+    location: req.body.warehouse,
     price: req.body.price
    };
   res.redirect("/");
