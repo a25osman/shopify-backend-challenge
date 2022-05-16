@@ -65,7 +65,7 @@ app.get("/", (req, res) => {
 });
 
 // Render "create an inventory item" page
-app.get("/inventory/new", (req, res) => {
+app.get("/new", (req, res) => {
     res.render("inventory_new");
 });
 
@@ -79,6 +79,7 @@ app.get("/inventory/:id", (req, res) => {
 // Update product information
 app.post("/inventory/:id", (req, res) => {
   const id = req.params.id;
+  console.log(id, "ee=========")
   inventory[id].product = req.body.product;
   inventory[id].qty = req.body.qty;
   inventory[id].location = req.body.location;
@@ -86,6 +87,27 @@ app.post("/inventory/:id", (req, res) => {
   res.redirect("/");
 });
 
+// Create new product
+app.post("/new", (req, res) => {
+  const id = Number(Object.keys(inventory).pop()) + 1; // this will be the id of the new product
+  inventory[id] = {
+    id,
+    code: generateRandomString(),
+    product: req.body.product,
+    qty: req.body.qty,
+    location: req.body.location,
+    price: req.body.price
+   };
+  console.log(inventory[id])
+  res.redirect("/");
+});
+
+// Delete product
+app.post("/inventory/:id/delete", (req, res) => {
+  const id = req.params.id;
+  delete inventory[id];
+  res.redirect(`/urls`);
+});
 
 // app.get("/urls.json", (req, res) => {
 //   res.json(urlDatabase);
