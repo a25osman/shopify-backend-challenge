@@ -9,32 +9,4 @@ const generateRandomString = function () {
   return str;
 }
 
-const checkEmail = function (users, email){ //users is object with user objects
-  let users_array = Object.values(users) //users_array is array with user objects
-  let check = false;
-  let name = undefined;
-  let pass = undefined;
-  let id = undefined;
-  for (let obj of users_array) {
-    if (obj["email"] == email) {
-      check = true;
-      name = obj["email"];
-      pass = obj["password"]
-      id = obj["id"];
-    }
-  }
-  return [check, name, pass, id];
-}
-
-const myURL = function (users, id) {
-  let obj = {};
-  for (let key in users) {
-    if (users[key].userID === id) {
-      obj[key] = users[key];
-    }
-  }
-  return obj;
-}
-
-
-module.exports = {generateRandomString, checkEmail, myURL};
+module.exports = {generateRandomString};

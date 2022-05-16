@@ -7,19 +7,44 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
 
-    <title>New URL - TinyApp Example</title>
+    <title>New Product - InventoryApp</title>
   </head>
 
   <body>
     <%- include('partials/_header') %>
     <main style="margin: 1em;">
-      <h3>Create TinyURL</h3>
-      <form class="form-inline" action="/urls" method="POST">
-        <div class="form-group mb-2">
-          <label for="longURL">Enter a URL:</label>
-          <input class="form-control" type="text" name="longURL" value="http://www." style="width: 300px; margin: 1em">
-          <button type="submit" class="btn btn-primary">Submit</button>
+      <h3>Create Product</h3>
+      <form class="card-text" action="/inventory/new" method="POST">
+        <div class="input-group mb-3">
+          <div class="input-group-prepend">
+            <span class="input-group-text" id="inputGroup-sizing-default">Product</span>
+          </div>
+          <input name="product" type="text" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default">
         </div>
+
+        <div class="input-group mb-3">
+          <div class="input-group-prepend">
+            <span class="input-group-text" id="inputGroup-sizing-default">Quantity</span>
+          </div>
+          <input name="qty" type="text" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default">
+        </div>
+
+        <div class="input-group mb-3">
+          <div class="input-group-prepend">
+            <span class="input-group-text" id="inputGroup-sizing-default">Location</span>
+          </div>
+          <input name="location" type="text" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default">
+        </div>
+
+        <div class="input-group mb-3">
+          <div class="input-group-prepend">
+            <span class="input-group-text" id="inputGroup-sizing-default">Price</span>
+          </div>
+          <input name="price" type="text" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default">
+        </div>
+
+        <button type="submit" class="btn btn-primary">Submit</button>
+
       </form>
     </main>
       <!-- Bootstrap JS -->
