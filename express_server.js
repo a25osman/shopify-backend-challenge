@@ -54,6 +54,8 @@ const inventory = {
   }
 };
 
+const warehouses = ["Toronto Storage", "Montreal Factory", "New York Closet"];
+
 
 // CRUD actions start below
 //------------------------------------------------
@@ -69,6 +71,11 @@ app.get("/new", (req, res) => {
     res.render("inventory_new");
 });
 
+// GET "create a warehouse" page
+app.get("/locations/new", (req, res) => {
+    res.render("locations_new");
+});
+
 // GET "Edit an inventory item" page
 app.get("/inventory/:id", (req, res) => {
   const id = req.params.id;
@@ -79,7 +86,6 @@ app.get("/inventory/:id", (req, res) => {
 // Update product information
 app.post("/inventory/:id", (req, res) => {
   const id = req.params.id;
-  console.log(id, "ee=========")
   inventory[id].product = req.body.product;
   inventory[id].qty = req.body.qty;
   inventory[id].location = req.body.location;
@@ -98,6 +104,13 @@ app.post("/new", (req, res) => {
     location: req.body.location,
     price: req.body.price
    };
+  res.redirect("/");
+});
+
+// Create new warehouse
+app.post("/locations/new", (req, res) => {
+  const warehouse = req.body.warehouse;
+  warehouses.push(warehouse); 
   res.redirect("/");
 });
 
