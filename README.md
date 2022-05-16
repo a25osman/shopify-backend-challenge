@@ -1,23 +1,20 @@
-# TinyApp Project
+# Shopify Backend Dev Challenge Summer 2022 - Awab Osman
 
-TinyApp is a full stack web application built with Node and Express that allows users to shorten long URLs (à la bit.ly).
+This is a inventory tracking web application, which allows users to manage inventory using basic CRUD functionality. The additional feature added to this project allows users to create warehouses and assign inventory to specific locations. Users can assign inventory to specific locations by editing existing products or creating new products.
 
-## Final Product
+This app has been deployed on:
 
-!["Screenshot of URLs homepage when logged in"](https://github.com/a25osman/tinyapp/blob/master/docs/tinyurl_homepage_logged_in.png?raw=true)
+Given more time, this web application can be improved in many ways, including: user authentication, css styling, data validation, among other additional features as required.
 
-!["screenshot of URLs homepage when logged out"](https://github.com/a25osman/tinyapp/blob/master/docs/tinyurl_homepage_logged_out.png?raw=true)
 
 ## Dependencies
 
 - Node.js
 - Express
 - EJS
-- bcrypt
 - body-parser
-- cookie-session
 
 ## Getting Started
 
 - Install all dependencies (using the `npm install` command).
-- Run the development web server using the `node express_server.js` command.
+- Run the development web server using the `node express_server.js` or `npm start` command.
