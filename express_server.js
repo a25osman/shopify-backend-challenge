@@ -1,4 +1,7 @@
-const {generateRandomString} = require("./helpers")
+//This fcn is used to generate random product code
+const {generateRandomString} = require("./helpers") 
+
+// Set up of express server
 const PORT = 8080;
 
 const express = require("express");
@@ -77,6 +80,39 @@ app.get("/locations/new", (req, res) => {
   res.render("locations_new");
 });
 
+// GET "List of warehouse" page
+app.get("/warehouses/", (req, res) => {
+  const templateVars = {warehouses}
+  res.render("warehouse_index", templateVars);
+});
+
+// GET "specific warehouse" page
+app.get("/warehouses/:id", (req, res) => {
+  const warehouse = req.params.id;
+  const warehouseProductID = [];
+  for (let key in inventory) {
+    if (inventory[key].location === warehouse) {
+      warehouseProductID.push(key);
+    }
+  }
+  const warehouseProducts = {};
+  const availableProducts = {};
+  for (let key of warehouseProductID) {
+    if (inventory[key]) {
+      warehouseProducts[key] = inventory[key];
+    }
+  }
+  
+  for (let key in inventory) {
+    if (!warehouseProducts[key]) {
+      availableProducts[key] = inventory[key];
+    }
+  }
+
+  const templateVars = {warehouse, warehouseProducts, availableProducts}
+  res.render("warehouse_details", templateVars);
+});
+
 // GET "Edit an inventory item" page
 app.get("/inventory/:id", (req, res) => {
   const id = req.params.id;
@@ -113,6 +149,14 @@ app.post("/locations/new", (req, res) => {
   const warehouse = req.body.warehouse;
   warehouses.push(warehouse); 
   res.redirect("/");
+});
+
+// Assign product to warehouse
+app.post("/warehouses/:id/assign", (req, res) => {
+  const warehouse = req.params.id;
+  const key = req.body.warehouse;
+  inventory[key].location = warehouse
+  res.redirect(`/warehouses/${warehouse}`);
 });
 
 // Delete product
